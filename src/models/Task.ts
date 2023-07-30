@@ -2,7 +2,7 @@ export class Task {
     id: number;
     title: string;
     description: string;
-    done: boolean;
+    completion: boolean;
     createAt: Date;
     updateAt: Date;
     constructor(object?: any) {
@@ -10,13 +10,13 @@ export class Task {
             this.id = object.id;
             this.title = object.title;
             this.description = object.description;
-            this.done = object.done;
+            this.completion = object.completion;
             this.createAt = object.createAt;
             this.updateAt = object.updateAt;
         }
     }
 
     swapState() {
-        this.done = !this.done;
+        this.completion = !this.completion;
     }
 }
