@@ -1,20 +1,24 @@
 <script lang="ts">
-import axios from 'axios';
-import { Task } from './models/Task';
+    import { onMount } from 'svelte';
 
-let tasks: Task[] = [];
 
-function getAllTasks(){
-  axios.get('http://localhost:3000/task')
-  .then((response) => {
-    response.data.forEach(element => {
-      tasks = [...tasks, new Task(element)]
+  import TaskService from './lib/services/task-service';
+  import { Task } from './models/Task';
+
+  let tasks: Task[] = [];
+
+  function getAllTasks(){
+    TaskService.getAll().then((tasksFetched) => {
+      tasks = tasksFetched as Task[];
+    })
+    .catch((error) => {
+      console.log(error);
     });
-  })
-  .catch((error) => {
-    console.log(error);
+  }
+
+  onMount(() => {
+    getAllTasks();
   });
-}
 
 </script>
 
@@ -24,11 +28,12 @@ function getAllTasks(){
     <div>
       <h1>{task.title}</h1>
       <p>{task.description}</p>
+      <p>{task.completion}</p>
     </div>
     
   {/each}
- 
-  <button on:click={getAllTasks}> mr white je gay </button>
+<!--  
+  <button on:click={getAllTasks}> mr white je gay </button> -->
 </main>
 
 <style>
