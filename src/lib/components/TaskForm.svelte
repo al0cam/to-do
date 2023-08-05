@@ -1,33 +1,45 @@
 <script lang="ts">
   import { Task } from '../../models/Task';
-  import TaskService from '../services/task-service';
   import { taskStore } from '../stores/task-store';
 
-  let title;
-  let description;
-
-  TaskService.getAll();
+  // let formData = {
+  //   title: '',
+  //   description: '',
+  //   completion: false
+  // }
 
   function submitForm(event: Event){
     event.preventDefault();
-    TaskService.add(new Task({title, description, completion: false}))
-    .then((task) => {
-      taskStore.add(task);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+    taskStore.addTask(new Task(
+      {
+        title: this.title.value,
+        description: this.description.value,
+        completion: this.completion.checked
+      }
+    ));
   }
-
 </script>
 
-
-<template>
+<div>
   <form on:submit|preventDefault={submitForm}>
     <label for="title">Title</label>
-    <input type="text" id="title" bind:value={title} />
+    <input type="text" id="title"/>
     <label for="description">Description</label>
-    <input type="text" id="description" bind:value={description} />
+    <input type="text" id="description"/>
+    <label for="completion">Completion</label>
+    <input type="checkbox" id="completion"/>
     <button type="submit">Submit</button>
   </form>
-</template>
+</div>
+
+<style scoped>
+ form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+ }
+
+</style>
