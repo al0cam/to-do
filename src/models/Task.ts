@@ -5,6 +5,7 @@ export class Task {
     completion: boolean;
     createAt: Date;
     updateAt: Date;
+    deletedAt: Date;
     constructor(object?: any) {
         if (object) {
             this.id = object.id;
@@ -13,6 +14,7 @@ export class Task {
             this.completion = object.completion;
             this.createAt = object.createAt;
             this.updateAt = object.updateAt;
+            this.deletedAt = object.deletedAt;
         }
     }
 
