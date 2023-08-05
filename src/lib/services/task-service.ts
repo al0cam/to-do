@@ -1,8 +1,6 @@
 import axios from "axios";
 import type { Task } from "../../models/Task";
 
-// TODO: connect store and service so i dont have to do it in multiple spaces
-
 export default class TaskService{
     private static readonly baseUrl = "http://localhost:3000/task";
 
@@ -21,6 +19,6 @@ export default class TaskService{
     }
 
     public static async update(task: Task){
-        await axios.put(`${this.baseUrl}/${task.id}`, task);
+        await axios.patch(`${this.baseUrl}/${task.id}`, task);
     }
 }
