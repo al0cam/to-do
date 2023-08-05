@@ -34,6 +34,19 @@ function createStore()
     // sends everything that is different instead of sending the requests one by one
     // for efficiency reasons
 
+    function syncStoreWithBackend()
+    {
+        let backendTasks = getAllTasks();
+        // if task in backendList and not in storeList its removed
+        // if task in storeList and not in backendList its added
+        // if task in both lists but different its updated
+        // thats mad inneficient but it works
+        // instead there should be a list with changes only
+
+    }
+
+
+
     return {add, removeTask, updateTask, subscribe};
 }
 
