@@ -1,6 +1,6 @@
 <script lang="ts">
   import { Task } from '../../models/Task';
-    import TaskService from '../services/task-service';
+  import TaskService from '../services/task-service';
   import { taskStore } from '../stores/task-store';
 
   let title;
