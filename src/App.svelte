@@ -1,41 +1,38 @@
 <script lang="ts">
-    import { onMount } from 'svelte';
-
-
-  import TaskService from './lib/services/task-service';
-  import { Task } from './models/Task';
-
-  let tasks: Task[] = [];
-
-  function getAllTasks(){
-    TaskService.getAll().then((tasksFetched) => {
-      tasks = tasksFetched as Task[];
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-  }
+  import { onMount } from 'svelte';
+  import { taskStore } from './lib/stores/task-store';
+  import TaskForm from './lib/components/TaskForm.svelte';
 
   onMount(() => {
-    getAllTasks();
+    taskStore.getAllTasks();
   });
 
 </script>
 
 <main>
+  <div>
+    <TaskForm></TaskForm>
+  </div>
   
-  {#each tasks as task}
-    <div>
-      <h1>{task.title}</h1>
-      <p>{task.description}</p>
-      <p>{task.completion}</p>
+  {#each $taskStore as task}
+  <div class="item-list">
+    <h1>{task.title}</h1>
+    <div hidden>
+      {task.description}
     </div>
-    
+    <input type="checkbox" checked={task.completion} on:click={() => taskStore.swapCompletion(task)}/>
+  </div>
   {/each}
-<!--  
-  <button on:click={getAllTasks}> mr white je gay </button> -->
+  
 </main>
 
 <style>
-
+.item-list{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
 </style>
