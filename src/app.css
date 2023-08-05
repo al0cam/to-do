@@ -19,21 +19,30 @@ body
   margin: 0;
 }
 
+main{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: start;
+
+  width: 100%
+}
+
+.item-width
+{
+  /* width: clamp(35ch, 100% - 2rem, 85ch); */
+  flex-grow: 1;
+}
+
 @media screen and (min-width: 600px) {
   
   #app {
     background-color: rgb(157, 157, 157);
     height: 100vh;
-    width: 100%;
     margin-inline: auto;
   
     width: min(90ch, 100% - 4rem);
-  
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    justify-content: start;
   }
 }
 
@@ -42,14 +51,8 @@ body
   #app {
     background-color: rgb(157, 157, 157);
     height: 100vh;
-    width: 100%;
     margin-inline: auto;
-  
-  
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    justify-content: start;
   }
 }
+
+
