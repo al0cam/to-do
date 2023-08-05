@@ -18,7 +18,13 @@ export class Task {
         }
     }
 
-    swapState() {
-        this.completion = !this.completion;
-    }
+    // Doesnt work in the #each function for some reason, says it doesnt exist so i pushed it to the store to take care of it
+    // swapState() {
+    //     this.completion = !this.completion;
+    // }
+    
+    // swapState = () => {
+    //     this.completion = !this.completion;
+    // }
+    
 }
